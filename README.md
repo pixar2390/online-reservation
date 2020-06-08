@@ -20,5 +20,26 @@
 ## ＜ダウンロード方法＞
   - https://github.com/pixar2390/online-reservation.git
 
+  - 後でデプロイ場所のURLをここに書く
+
+# online-reservation DB設計
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|
+|password|string|null: false|
+### Association
+- has_one :subscriver
+
+## subscribersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|examination|integer|null: false|
+|user|reference|null: false, foreign_key: true|
+### Association
+- belongs_to :users
+
+
 
 
