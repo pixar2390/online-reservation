@@ -38,7 +38,7 @@
 |examination|integer|null: false|
 |user|reference|null: false, foreign_key: true|
 ### Association
-- belongs_to :users
+- belongs_to :user
 
 
 
