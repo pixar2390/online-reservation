@@ -1,3 +1,24 @@
-// Place all the styles related to the reservations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+  box-sizing: border-box;
+}
+
+.flame{
+  height: 100vh;
+  width: 100vw;
+  .upper-box{
+    height: 30%;
+    width: 100%;
+    background-image: radial-gradient(circle,yellow,green);
+    display: flex;
+    .picture{
+
+    }
+    a{
+      height: 30px;
+      width: 100px;
+      background-color:orange;
+      border-style: solid;
+    }
+  }
+
+}
