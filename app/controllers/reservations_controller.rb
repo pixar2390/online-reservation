@@ -5,8 +5,13 @@ class ReservationsController < ApplicationController
     if current_user.id < 6 then
       redirect_to  edit_reservation_path(current_user.id)
     end
-    @current_num = Reservation.first
-    @next_num = Reservation.count + 1
+    if Reservation.count == 0 then
+      @current_num = "現在、診察中の方はいません。"
+      @next_num = "待ち時間はございません、御来院ください。"
+    else
+      @current_num = Reservation.first.examination
+      @next_num = Reservation.count + 1
+    end
   end
 
   def show
@@ -18,10 +23,10 @@ class ReservationsController < ApplicationController
 
   def create
     #もし受付件数が０ならばダミーデータを作成する
-    binding.pry
+    # binding.pry
     if Reservation.count == 0 then
       (1..5).each{ |n|
-        dummy = Reservation.new(examination: n)
+        dummy = Reservation.new(examination: n, user_id: n)
         dummy.save
       }
     end
@@ -29,7 +34,7 @@ class ReservationsController < ApplicationController
     if Reservation.count == 0 then
       exam_num = 1
     else
-      exam_num = Reservation.last.examination +1
+      exam_num = Reservation.last.examination + 1
     end
     reservation = Reservation.new do |r|
       r.examination = exam_num
