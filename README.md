@@ -30,9 +30,9 @@
 |email|string|null: false|
 |password|string|null: false|
 ### Association
-- has_one :subscriver
+- has_one :reservation
 
-## subscribersテーブル
+## reservationsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |examination|integer|null: false|
