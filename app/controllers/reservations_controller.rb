@@ -5,6 +5,7 @@ class ReservationsController < ApplicationController
     if current_user.id < 6 then
       redirect_to  edit_reservation_path(current_user.id)
     end
+    #テーブルの中身がからだと正しい診察番号が表示されないため条件分岐
     if Reservation.count == 0 then
       @current_num = "現在、診察中の方はいません。"
       @next_num = "待ち時間はございません、御来院ください。"
@@ -23,7 +24,6 @@ class ReservationsController < ApplicationController
 
   def create
     #もし受付件数が０ならばダミーデータを作成する
-    # binding.pry
     if Reservation.count == 0 then
       (1..5).each{ |n|
         dummy = Reservation.new(examination: n, user_id: n)
@@ -40,8 +40,9 @@ class ReservationsController < ApplicationController
       r.examination = exam_num
       r.user_id = current_user.id
     end
-
-    if reservation.save == true then
+    #受付済みのユーザーが再度受付すると一意性制約のせいでエラーが起こるので、ここでエスケープ
+    if Reservation.where(user_id: current_user.id).empty? then
+      reservation.save
       redirect_to root_path, notice: '受付が完了しました'
     else
       render :new
