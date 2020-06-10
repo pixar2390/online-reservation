@@ -13,11 +13,15 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    
   end
 
   def create
-    
+    @reservation = Reservation.new(group_params)
+    if @reservation .save
+      redirect_to root_path, notice: '予約を作成しました'
+    else
+      render :new
+    end
   end
 
   def edit
