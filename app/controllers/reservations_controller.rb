@@ -1,8 +1,9 @@
 class ReservationsController < ApplicationController
 
   def index
-    if current_user.id < 2 thhen
-      render_to redirect_to  edit_reservation_path(@group.id)
+    #userのID番号が１の時管理者専用ページに行くように設定する
+    if current_user.id < 2 then
+      redirect_to  edit_reservation_path(current_user.id)
     end
 
   end
@@ -20,6 +21,7 @@ class ReservationsController < ApplicationController
   end
 
   def edit
+    #病院関係者専用ページとする。ここで受付を完了した患者データ一覧をみながら、レコードを操作できるようにする
     
   end
 
