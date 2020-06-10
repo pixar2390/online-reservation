@@ -12,9 +12,13 @@
         現在）
     .state
       %p.curent-examination-num
-        現在診察中の方の番号：ー番号を表示ー 番
+        現在診察中の方の番号：
+        = @current_num
+        番
       %p.next-get-examination-num
-        次にお取りできる診察番号：ー番号を表示ー 番
+        次にお取りできる診察番号：
+        = @next_num
+        番
   .under-box
     .take-reservation
       = button_to "受付をする", {controller: 'reservations', action: 'new', id: current_user.id}, {method: :get, class: 'btn'}
