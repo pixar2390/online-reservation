@@ -5,7 +5,8 @@ class ReservationsController < ApplicationController
     if current_user.id < 2 then
       redirect_to  edit_reservation_path(current_user.id)
     end
-
+    @current_num = Reservation.first.examination
+    @next_num = Reservation.count + 1
   end
 
   def show
@@ -16,9 +17,13 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.new(group_params)
-    if @reservation .save
-      redirect_to root_path, notice: '予約を作成しました'
+    exam_num = Reservation.count + 1
+    reservation = Reservation.new do |r|
+      r.examination = exam_num
+      r.user_id = current_user.id
+    end
+    if reservation.save
+      redirect_to root_path, notice: '受付が完了しました'
     else
       render :new
     end
@@ -38,7 +43,6 @@ class ReservationsController < ApplicationController
   end
 
   private
-
 
 
 end
