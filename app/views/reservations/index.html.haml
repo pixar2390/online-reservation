@@ -1,11 +1,23 @@
-
 .flame
   .upper-box
-    = image_tag '/assets/head-img-tpics.jpg', alt: '病院', height: '100%', width: '70%', class: 'picture'
-    %a.header-logout
-      < Logout >
+    = image_tag '/assets/head-img-tpics.jpg', alt: '病院', height: '100%', width: '100%', class: 'picture'
   .middle-box
-
-
+    = link_to "[ ログアウト ]", destroy_user_session_path, method: :delete, class: 'btn'
+    .dum-box
+      %ul.text1
+        < 診療状況 >
+      %ul.time-now
+        （
+        = Time.zone.now.strftime("%Y年%m月%d日 %H時%M分")
+        現在）
+    .state
+      %p.curent-examination-num
+        現在診察中の方の番号：ー番号を表示ー 番
+      %p.next-get-examination-num
+        次にお取りできる診察番号：ー番号を表示ー 番
   .under-box
-
+    -# javascript実装後にボタン要素に変更
+    .administer-login
+      関係者ログイン
+    .take-reservation
+      予約受付
