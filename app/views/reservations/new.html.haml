@@ -1,8 +1,4 @@
-登録日を指定する
-
-
-
-
-
-受付確定ボタン
-= button_to "受付を確定する", {controller: 'reservations', action: 'create', id: current_user.id}, {method: :post, class: 'btn'}
+時刻表などを表示して、任意の時間帯で予約できるようにしたいが、時間がないので後回し
+.r-box
+  = button_to "受付を確定する", {controller: 'reservations', action: 'create', id: current_user.id}, {method: :post, class: 'btn'}
+  = button_to "ホーム画面に戻る", {controller: 'reservations', action: 'index'}, {method: :get, class: 'btn'}
