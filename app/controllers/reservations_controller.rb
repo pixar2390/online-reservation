@@ -1,6 +1,9 @@
 class ReservationsController < ApplicationController
 
   def index
+    if current_user.id < 2 thhen
+      render_to redirect_to  edit_reservation_path(@group.id)
+    end
 
   end
 
@@ -27,5 +30,9 @@ class ReservationsController < ApplicationController
   def destroy
     
   end
+
+  private
+
+
 
 end
