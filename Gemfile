@@ -63,3 +63,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'haml-rails'
 gem 'jquery-rails'
+
+#debug gem
+gem "better_errors"
+gem "binding_of_caller"
+gem 'pry-rails'
