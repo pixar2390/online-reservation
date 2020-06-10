@@ -39,7 +39,7 @@ class ReservationsController < ApplicationController
     #受付済みのユーザーが再度受付すると一意性制約のせいでエラーが起こるので、ここでエスケープ
     if Reservation.where(user_id: current_user.id).empty? then
       reservation.save
-      redirect_to root_path, notice: '受付が完了しました'
+      render "finish"
     else
       render :new
     end
