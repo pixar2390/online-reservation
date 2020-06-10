@@ -31,11 +31,7 @@ class ReservationsController < ApplicationController
       }
     end
     #ユーザーの情報をレコードに記録
-    if Reservation.count == 0 then
-      exam_num = 1
-    else
-      exam_num = Reservation.last.examination + 1
-    end
+    exam_num = Reservation.last.examination + 1
     reservation = Reservation.new do |r|
       r.examination = exam_num
       r.user_id = current_user.id
