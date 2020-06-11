@@ -8,7 +8,7 @@ class ReservationsController < ApplicationController
     #テーブルの中身がからだと正しい診察番号が表示されないため条件分岐
     if Reservation.count == 0 then
       @current_num = "現在、診察中の方はいません。"
-      @next_num = "待ち時間はございません、御来院ください。"
+      @next_num = 1
     else
       @current_num = Reservation.first.examination
       @next_num = Reservation.count + 1
