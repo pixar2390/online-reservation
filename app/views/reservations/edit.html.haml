@@ -1,2 +1,5 @@
 = link_to "[ ログアウト ]", destroy_user_session_path, method: :delete, class: 'btn', id: 'ログアウト'
-患者の一覧を表示し、予約者の修正も可能にする
+受付済みの患者の一覧を表示し、診察を終えた患者を削除できるようにする
+ダミー作成ボタンを作る。
+= button_to "受付の準備をする（ダミーを生成）", {controller: 'reservations', action: 'create', id: current_user.id}, {method: :post, class: 'btn'}
+
