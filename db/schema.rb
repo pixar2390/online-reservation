@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_020059) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "flag"
+    t.boolean "flag", default: false, null: false
     t.index ["user_id"], name: "index_reservations_on_user_id", unique: true
   end
 
