@@ -16,41 +16,26 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    
   end
 
   def new
   end
 
   def create
-    if current_user.id <= 5 then #病院関係者の場合
-      #もし受付件数が０ならばダミーデータを作成する
-      if Reservation.count == 0 then
-        (1..5).each{ |n|
-          dummy = Reservation.new(examination: n, user_id: n, flag: false)
-          dummy.save
-        }
+    #受付済みのユーザーが再度受付すると一意性制約のせいでエラーが起こるので、ここでエスケープ,且レコードが0の時は休診中と判断し受付をさせない
+    if Reservation.where(user_id: current_user.id).empty? && Reservation.count != 0 then
+      #ユーザーの情報をレコードに記録
+      exam_num = Reservation.last.examination + 1
+      reservation = Reservation.new do |r|
+        r.examination = exam_num
+        r.user_id = current_user.id
+        r.flag = false
       end
-      #受付表編集画面に遷移
-      render :edit
-    else  #患者の場合
-      #受付済みのユーザーが再度受付すると一意性制約のせいでエラーが起こるので、ここでエスケープ,且レコードが0の時は休診中と判断し受付をさせない
-      if Reservation.where(user_id: current_user.id).empty? && Reservation.count != 0 then
-        #ユーザーの情報をレコードに記録
-        exam_num = Reservation.last.examination + 1
-        reservation = Reservation.new do |r|
-          r.examination = exam_num
-          r.user_id = current_user.id
-          r.flag = false
-        end
-        reservation.save
-      else
-        #アクション名指定すると、そのアクション名のテンプレートが呼ばれるだけで、コントローラーは読まれないのでインスタンス変数などを使っている場合は注意が必要。
-        render :new
-      end
+      reservation.save
+    else
+      #renderメソッドの引数にアクション名指定すると、そのアクション名のテンプレートが呼ばれるだけで、アクションは読まれないのでインスタンス変数などを使っている場合は注意が必要。
+      render :new
     end
-
-    
   end
 
   def edit
@@ -59,14 +44,22 @@ class ReservationsController < ApplicationController
   end
 
   def update
-
   end
 
   def destroy
-    #あとで書く
-    UserMailer.notice_email(current_user).deliver_now
+    binding.pry
+    #reservationsテーブルの中身をリセットする。
+    Reservation.all.destroy_all
+    #ダミーデータの作成（管理者アカウントが５人、登録されている事を利用する）
+    (1..5).each{ |n|
+      dummy = Reservation.new(examination: n, user_id: n, flag: false)
+      dummy.save
+    }
+    # UserMailer.notice_email(current_user).deliver_now
     #メールを送ったら、flagの値を編集
     
+    #redirect_toにすることにより、editアクションを実行
+    redirect_to action: "edit"
   end
 
   private
