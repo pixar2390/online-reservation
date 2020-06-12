@@ -1,5 +1,12 @@
-= link_to "[ ログアウト ]", destroy_user_session_path, method: :delete, class: 'btn', id: 'ログアウト'
-受付済みの患者の一覧を表示し、診察を終えた患者を削除できるようにする
-ダミー作成ボタンを作る。
-= button_to "受付の準備をする（ダミーを生成）", {controller: 'reservations', action: 'create', id: current_user.id}, {method: :post, class: 'btn'}
-
+.wrapper-r
+  %h2.page-title
+    ここは関係者専用ページです。
+  .edit-flame
+    .side-ber
+      = link_to "[ ログアウト ]", destroy_user_session_path, method: :delete, class: 'btn', id: 'ログアウト'
+      = button_to "受付の準備をする（受付表をリセット）", {controller: 'reservations', action: 'destroy', id: current_user.id}, {method: :delete, class: 'btn'}
+    .main
+      %h3.tabel-title
+        受付表
+      .record-box
+        .record
