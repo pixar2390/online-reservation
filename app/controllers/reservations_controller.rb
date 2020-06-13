@@ -41,21 +41,29 @@ class ReservationsController < ApplicationController
   def edit
     #受付表テーブルを表示させるために、インスタンス変数に格納
     @users = User.all
-    @reservations = Reservation.all
-    
+    @reservations = Reservation.all 
   end
 
   def update
+    @reservations = Reservation.all
     #診療が終わった患者を受付表から削除
-    
-    Reservation.find().destroy
-    #通知メールを送信
-    # UserMailer.notice_email(current_user).deliver_now
-    #メールを送ったら、flagの値を編集
+    Reservation.find_by(user_id: params[:id]).destroy
+    #受付表の上位５人にメールを送る
+    @reservations.each.with_index(1) do |reservation, index|
+      break if index > 5 
+      #flagを目印にメールを送信する。flagが立ってるものは送信済みであるから省く。
+      if reservation.flag == false then
+        #通知メールを送信
+        UserMailer.notice_email(User.find(reservation.user_id)).deliver_now
+        #メールを送信した事を記録し変更を保存
+        reservation.flag = true
+        reservation.save
+      end
+    end
+    redirect_to action: "edit"
   end
 
   def destroy
-    binding.pry
     #reservationsテーブルの中身をリセットする。
     Reservation.all.destroy_all
     #ダミーデータの作成（管理者アカウントが５人、登録されている事を利用する）
