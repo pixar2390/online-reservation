@@ -26,6 +26,6 @@
               %td
                 = @users.find(reservation.user_id).name
               %td 
-                = button_to "診察終了", {controller: 'reservations', action: 'update', id: current_user.id}, {method: :patch, class: 'btn'}
+                = button_to "診察終了", {controller: 'reservations', action: 'update', id: reservation.user_id}, {method: :patch, class: 'btn'}
 
 
