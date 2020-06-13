@@ -54,7 +54,7 @@ class ReservationsController < ApplicationController
       #flagを目印にメールを送信する。flagが立ってるものは送信済みであるから省く。
       if reservation.flag == false then
         #通知メールを送信
-        UserMailer.notice_email(User.find(reservation.user_id)).deliver_now
+        UserMailer.notice_email(User.find(reservation.user_id)).deliver_later
         #メールを送信した事を記録し変更を保存
         reservation.flag = true
         reservation.save
