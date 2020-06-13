@@ -39,11 +39,19 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    #病院関係者専用ページとする。ここで受付を完了した患者データ一覧をみながら、レコードを操作できるようにする
+    #受付表テーブルを表示させるために、インスタンス変数に格納
+    @users = User.all
+    @reservations = Reservation.all
     
   end
 
   def update
+    #診療が終わった患者を受付表から削除
+    
+    Reservation.find().destroy
+    #通知メールを送信
+    # UserMailer.notice_email(current_user).deliver_now
+    #メールを送ったら、flagの値を編集
   end
 
   def destroy
@@ -51,13 +59,11 @@ class ReservationsController < ApplicationController
     #reservationsテーブルの中身をリセットする。
     Reservation.all.destroy_all
     #ダミーデータの作成（管理者アカウントが５人、登録されている事を利用する）
+    #メールが送られないようにflagはデフォルトでtrueにしておく
     (1..5).each{ |n|
-      dummy = Reservation.new(examination: n, user_id: n, flag: false)
+      dummy = Reservation.new(examination: n, user_id: n, flag: true)
       dummy.save
     }
-    # UserMailer.notice_email(current_user).deliver_now
-    #メールを送ったら、flagの値を編集
-    
     #redirect_toにすることにより、editアクションを実行
     redirect_to action: "edit"
   end
