@@ -3,10 +3,29 @@
     ここは関係者専用ページです。
   .edit-flame
     .side-ber
-      = link_to "[ ログアウト ]", destroy_user_session_path, method: :delete, class: 'btn', id: 'ログアウト'
-      = button_to "受付の準備をする（受付表をリセット）", {controller: 'reservations', action: 'destroy', id: current_user.id}, {method: :delete, class: 'btn'}
+      .logout-link
+        = link_to "[ ログアウト ]", destroy_user_session_path, method: :delete, class: 'btn', id: 'ログアウト'
+      .reset-button
+        = button_to "受付表をリセット", {controller: 'reservations', action: 'destroy', id: current_user.id}, {method: :delete, class: 'btn'}
     .main
-      %h3.tabel-title
-        受付表
-      .record-box
-        .record
+      %table.default_table_class{border: 5}
+        %caption <<< 受付表 >>>
+        %thead
+          %tr
+            %th ＜患者番号＞
+            %th ＜診察番号＞
+            %th ＜名前＞
+            %th ＜削除ボタン＞
+        %tbody
+          - @reservations.each do |reservation|
+            %tr
+              %td 
+                = reservation.user_id
+              %td 
+                = reservation.examination
+              %td
+                = @users.find(reservation.user_id).name
+              %td 
+                = button_to "診察終了", {controller: 'reservations', action: 'update', id: current_user.id}, {method: :patch, class: 'btn'}
+
+
