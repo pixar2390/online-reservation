@@ -7,6 +7,9 @@
         = link_to "[ ログアウト ]", destroy_user_session_path, method: :delete, class: 'btn', id: 'ログアウト'
       .reset-button
         = button_to "受付表をリセット", {controller: 'reservations', action: 'destroy', id: current_user.id}, {method: :delete, class: 'btn'}
+      .closure-button
+        = button_to "休診", {controller: 'reservations', action: 'destroy', id: "closure"}, {method: :delete, class: 'btn'}
+      
     .main
       %table.default_table_class{border: 5}
         %caption <<< 受付表 >>>
