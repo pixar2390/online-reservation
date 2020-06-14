@@ -66,12 +66,15 @@ class ReservationsController < ApplicationController
   def destroy
     #reservationsテーブルの中身をリセットする。
     Reservation.all.destroy_all
-    #ダミーデータの作成（管理者アカウントが５人、登録されている事を利用する）
-    #メールが送られないようにflagはデフォルトでtrueにしておく
-    (1..5).each{ |n|
-      dummy = Reservation.new(examination: n, user_id: n, flag: true)
-      dummy.save
-    }
+    #休診ボタンが押されてない場合
+    if params[:id] != "closure" then
+      #ダミーデータの作成（管理者アカウントが５人、登録されている事を利用する）
+      #メールが送られないようにflagはデフォルトでtrueにしておく
+      (1..5).each{ |n|
+        dummy = Reservation.new(examination: n, user_id: n, flag: true)
+        dummy.save
+      }
+    end
     #redirect_toにすることにより、editアクションを実行
     redirect_to action: "edit"
   end
