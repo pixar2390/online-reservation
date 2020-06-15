@@ -16,6 +16,7 @@
   - Mac OS Catalina
   - Ruby 2.5.1
   - Rails 5.2.4.3
+  - Database:mysql
 
 ## ＜ダウンロード方法＞
   - https://github.com/pixar2390/online-reservation.git
