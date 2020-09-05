@@ -18,6 +18,9 @@
   - ６人目のユーザーを新規登録し、そのユーザーでログインすると受付予約画面に遷移出来る。
   - 関係者ページから、ダミー予約データを削除すると上位５名に来院を促すメールが送信される。
 
+## <ポートフォリオのスライド>
+  https://docs.google.com/presentation/d/1urB4gozZS4Wx62tmr-SCcJnlyAMEab89Xk6JVPpqb1E/edit#slide=id.g89c6cdf86c_0_448
+
 ## ＜開発環境＞
   - Mac OS Catalina
   - Ruby 2.5.1
@@ -25,9 +28,10 @@
   - Database:mysql
 
 ## ＜ダウンロード方法＞
+ ### ソースコード
   - https://github.com/pixar2390/online-reservation.git
-
-  - 後でデプロイ場所のURLをここに書く
+ ### デプロイ先のリンク
+  - https://mighty-ocean-33222.herokuapp.com/users/sign_in
 
 # online-reservation DB設計
 ## usersテーブル
