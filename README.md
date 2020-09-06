@@ -19,7 +19,9 @@
   - ６人目のユーザーを新規登録し、そのユーザーでログインすると受付予約画面に遷移出来る。
     実際の挙動→https://gyazo.com/bf4f3d48528ab4d81f21961d9dd7d948
   - 関係者ページから、ダミー予約データを削除すると上位５名に来院を促すメールが送信される。
-    実際の挙動→
+    実際の挙動→https://gyazo.com/f5fd718b8e7a44f8701c6e8abf4bfd97
+    実際にメールアドレスが存在する場合は以下のようなメールが届く
+    
 ## <ポートフォリオのスライド>
   https://docs.google.com/presentation/d/1urB4gozZS4Wx62tmr-SCcJnlyAMEab89Xk6JVPpqb1E/edit#slide=id.g89c6cdf86c_0_448
 
