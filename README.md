@@ -21,7 +21,7 @@
   - 関係者ページから、ダミー予約データを削除すると上位５名に来院を促すメールが送信される。
     実際の挙動→https://gyazo.com/f5fd718b8e7a44f8701c6e8abf4bfd97
     実際にメールアドレスが存在する場合は以下のようなメールが届く
-    
+    <img width="830" alt="スクリーンショット 2020-09-07 7 39 24" src="https://user-images.githubusercontent.com/65641396/92336690-43da3000-f0de-11ea-8385-7b18d66e299c.png">
 ## <ポートフォリオのスライド>
   https://docs.google.com/presentation/d/1urB4gozZS4Wx62tmr-SCcJnlyAMEab89Xk6JVPpqb1E/edit#slide=id.g89c6cdf86c_0_448
 
