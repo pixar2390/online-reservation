@@ -36,6 +36,12 @@
   - https://github.com/pixar2390/online-reservation.git
  ### デプロイ先のリンク
   - https://mighty-ocean-33222.herokuapp.com/users/sign_in
+    病院関係者テストアカウント→
+      メール:test1＠gmail.com
+      パスワード：12345678
+    患者用テストアカウント
+      メール:patient＠gmail.com
+      パスワード：12345678
 
 # online-reservation DB設計
 ## usersテーブル
